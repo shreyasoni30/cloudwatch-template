@@ -1,0 +1,30 @@
+version: "3"
+
+networks:
+  grafana:
+
+volumes:
+  app_data: {}
+
+services:
+  graphite:
+    image: graphiteapp/graphite-statsd:1.1.7-1
+    volumes:
+      - /opt/graphite/conf/:/opt/graphite/conf/:ro
+      - /mnt/graphite/storage/:/opt/graphite/storage/
+      - /mnt/graphite/log/:/var/log/
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "3003:2003"
+      - "3004:2004"
+      - "3013:2013"
+      - "3014:2014"
+      - "3023:2023"
+      - "3024:2024"
+    networks:
+      - grafana
+    state: "started"
+    restart_policy: "unless-stopped"
+
+
