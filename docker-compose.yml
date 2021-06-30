@@ -24,7 +24,5 @@ services:
       - "3024:2024"
     networks:
       - grafana
-    state: "started"
-    restart_policy: "unless-stopped"
 
 
